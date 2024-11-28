@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+void swap(int arr[], int start1, int start2, int count) {
+    for (int i = 0; i < count; i++) {
+        swap(arr[start1 + i], arr[start2 + i]);
+    }
+}
+
+
+void blockSwapRotate(int arr[], int n, int d) {
+   
+    d = d % n;
+
+    if (d == 0 || d == n) return; 
+
+    int i = d; 
+    int j = n - d; 
+
+    while (i != j) {
+        if (i < j) { 
+            swap(arr, d - i, d + j - i, i);
+            j -= i;
+        } else {
+            swap(arr, d - i, d, j);
+            i -= j;
+        }
+    }
+
+    
+    swap(arr, d - i, d, i);
+}
+
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int n, d;
+
+
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    int arr[n];
+
+ 
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+  
+    cout << "Enter the number of rotations: ";
+    cin >> d;
+
+    blockSwapRotate(arr, n, d);
+
+
+    cout << "Rotated Array: ";
+    printArray(arr, n);
+
+    return 0;
+}
