@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool checkMajorityElement(const vector<int>& arr) {
+    int n = arr.size();
+    
+
+    if (n == 0) {
+        cout << "No majority element" << endl;
+        return false;
+    }
+
+
+    int candidate = arr[n / 2];
+
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == candidate) {
+            count++;
+        }
+    }
+
+
+    if (count > n / 2) {
+        cout << "The majority element is: " << candidate << endl;
+        return true;
+    } else {
+        cout << "No majority element" << endl;
+        return false;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of elements in the sorted array: ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the sorted elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    checkMajorityElement(arr);
+
+    return 0;
+}
