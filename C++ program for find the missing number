@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+int findMissingNumberSumFormula(const vector<int>& arr, int n) {
+
+    int total_sum = (n * (n + 1)) / 2;
+
+    int array_sum = 0;
+    for (int num : arr) {
+        array_sum += num;
+    }
+
+  
+    return total_sum - array_sum;
+}
+
+
+int findMissingNumberXOR(const vector<int>& arr, int n) {
+    int xor_all = 0;
+    int xor_arr = 0;
+
+
+    for (int i = 1; i <= n; i++) {
+        xor_all ^= i;
+    }
+
+    for (int num : arr) {
+        xor_arr ^= num;
+    }
+
+
+    return xor_all ^ xor_arr;
+}
+
+int main() {
+    int n;
+    cout << "Enter the size of the array (n-1 elements): ";
+    cin >> n;
+
+    vector<int> arr(n - 1);
+    cout << "Enter the elements of the array (missing one element): ";
+    for (int i = 0; i < n - 1; i++) {
+        cin >> arr[i];
+    }
+
+
+    int missing_sum = findMissingNumberSumFormula(arr, n);
+    cout << "The missing number (using sum formula) is: " << missing_sum << endl;
+
+
+    int missing_xor = findMissingNumberXOR(arr, n);
+    cout << "The missing number (using XOR) is: " << missing_xor << endl;
+
+    return 0;
+}
